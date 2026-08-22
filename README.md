@@ -26,22 +26,22 @@ cd b4pass-0.1
 pip install -r requirements.txt
 
 ## Usage
-Basic directory scan:
+Basic directory scan:  
 python b4pass.py -u https://example.com
 
-Scan with extensions:
+Scan with extensions:  
 python b4pass.py -u https://example.com -e php,html,txt
 
-Test a specific URL for 403 bypasses:
+Test a specific URL for 403 bypasses:  
 python b4pass.py -b https://example.com/admin
 
-Use a custom wordlist:
+Use a custom wordlist:  
 python b4pass.py -u https://example.com -w wordlists/default.txt
 
-Save results as HTML or TXT:
+Save results as HTML or TXT:  
 python b4pass.py -u https://example.com -o report.html or -o report.txt
 
-For all available options:
+For all available options:  
 python b4pass.py --help
 
 ## Disclaimer
