@@ -22,7 +22,7 @@
 * Python **3.7+**
 
 ## Installation
-cd b4pass-0.1  
+cd b4pass-main  
 pip install -r requirements.txt
 
 ## Usage
