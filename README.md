@@ -22,8 +22,10 @@
 * Python **3.7+**
 
 ## Installation
-cd b4pass-main  
+git clone https://github.com/akashlahare/b4pass.git
+cd b4pass
 pip install -r requirements.txt
+pip install .
 
 ## Usage
 Basic directory scan:  
