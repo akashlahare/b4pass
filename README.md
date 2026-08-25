@@ -1,6 +1,6 @@
 # b4pass
 
-**b4pass** is an advanced web directory and endpoint scanner designed for web application security testing. It can discover hidden paths, scan recursively, handle authenticated requests, and test potential **403 access-control bypasses**.
+**b4pass** is an advanced web directory scanner designed for web application security testing. It can discover hidden paths/directories, scan recursively, handle authenticated requests, and test potential **403 access-control bypasses**.
 
 ![b4pass Preview](https://github.com/akashlahare/b4pass/blob/main/image.png)
 
