@@ -35,7 +35,7 @@ Scan with extensions:
 python b4pass.py -u https://example.com -e php,html,txt
 
 Test a specific URL for 403 bypasses:  
-python b4pass.py -b https://example.com/admin
+python b4pass.py -u https://example.com/ -b https://example.com/admin
 
 Use a custom wordlist:  
 python b4pass.py -u https://example.com -w wordlists/default.txt
