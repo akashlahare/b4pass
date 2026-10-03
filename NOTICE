@@ -1,0 +1,14 @@
+b4pass
+Copyright (c) 2025-2026 Akash Lahare
+
+This product includes software derived from dirsearch
+(https://github.com/maurosoria/dirsearch), Copyright (c) Mauro Soria,
+licensed under the GNU General Public License v2.0 or later.
+
+The scanning core (engine/) is a modified derivative of dirsearch.
+Modifications and the 401/403 access-control bypass engine
+(engine/core/bypass403.py, engine/core/softauth.py) are
+Copyright (c) 2025-2026 Akash Lahare, and are likewise released under
+the GNU General Public License v2.0 or later.
+
+See the per-file license headers for details.
