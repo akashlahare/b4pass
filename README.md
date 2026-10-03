@@ -1,51 +1,64 @@
 # b4pass
 
-**b4pass** is an advanced web directory scanner designed for web application security testing. It can discover hidden paths/directories, scan recursively, handle authenticated requests, and test potential **403 access-control bypasses**.
+**b4pass** is an advanced web directory scanner designed for web application security testing. It can discover hidden paths/directories, scan recursively, and test potential **403 access-control bypasses**.
 
 ![b4pass Preview](https://github.com/akashlahare/b4pass/blob/main/image.png)
 
 ## Features
-* Web directory and endpoint discovery
-* Built-in and custom wordlists
-* 403 bypass testing
-* Recursive scanning
-* Custom HTTP methods, headers, cookies and authentication
-* Proxy and Tor support
-* Rate limiting and request delays
-* Response filtering by status, size, text and regex
-* Crawl-based endpoint discovery
-* Raw HTTP request support
-* Multiple report formats: HTML, JSON, XML, CSV, Markdown, SQLite and text
-* Colored terminal output
+* Directory/endpoint discovery with built-in and custom wordlists
+* Recursive scanning, response filtering (status / size / text / regex), crawling
+* **401/403 bypass engine** — raw un-normalized path probes (`%2e%2e`, `/./`, `//`, `#frag`), header spoofing (IP/host/scheme/port/rewrite + cloud-metadata), HTTP method & HTTP/1.0 downgrade, false-positive calibration, SPA soft-auth-wall detection
+* Bypass probes inherit the scan's proxy / auth / cookies / headers
 
-## Requirements
-* Python **3.7+**
+## Install
 
-## Installation
-git clone https://github.com/akashlahare/b4pass.git  
-cd b4pass  
-pip install -r requirements.txt  
-pip install .  
+Requires Python 3.7+. Install **editable** — b4pass loads its bundled
+wordlist and report template from alongside the source, which a normal
+install leaves behind.
+
+```bash
+git clone https://github.com/akashlahare/b4pass.git
+cd b4pass
+pipx install --editable .        # or: python3 -m venv .venv && source .venv/bin/activate && pip install -e .
+```
+
+No install needed to run from source: `pip install -r requirements.txt` then `python3 b4pass.py`.
 
 ## Usage
-Basic directory scan:  
-python b4pass.py -u https://example.com
 
-Scan with extensions:  
-python b4pass.py -u https://example.com -e php,html,txt
+```bash
+b4pass -u https://example.com                                    # basic scan
+b4pass -u https://example.com -e php,html,txt                    # with extensions
+b4pass -u https://example.com -w wordlist.txt                    # custom wordlist
+b4pass -u https://example.com -r -R 3                            # recursive, max depth 3
+b4pass -b https://example.com/admin                              # bypass one URL (no scan)
+b4pass -u https://example.com --proxy http://127.0.0.1:8080      # route via Burp
+b4pass -u https://example.com --cookie "session=abc" -H "X-Key: v" # authenticated
+b4pass -u https://example.com -i 200,301,403 -o report.html
+b4pass --help                                                # all options
+```
 
-Test a specific URL for 403 bypasses:  
-python b4pass.py -u https://example.com/ -b https://example.com/admin
+## Key flags
 
-Use a custom wordlist:  
-python b4pass.py -u https://example.com -w wordlists/default.txt
+| Flag | Purpose |
+|------|---------|
+| `-u` / `-b` | Scan target / run bypass on a single URL |
+| `-w` / `-e` | Custom wordlist(s) / extensions |
+| `-r` / `-R` | Recursive / max depth |
+| `-i` / `-x` / `-s` | Include / exclude status codes / exclude sizes |
+| `-H` / `--cookie` / `--auth` + `--auth-type` | Headers / cookie / auth |
+| `--proxy` / `--tor` | Proxy (e.g. Burp) / Tor |
+| `-t` / `-d` / `--max-rate` / `--timeout` | Threads / delay / rate / timeout |
+| `-o` / `--format` | Output file / format |
 
-Save results as HTML or TXT:  
-python b4pass.py -u https://example.com -o report.html or -o report.txt
+## Attribution & License
 
-For all available options:  
-python b4pass.py --help
+Scanning core is a modified derivative of
+[dirsearch](https://github.com/maurosoria/dirsearch) (GPL-2.0, © Mauro
+Soria); the 401/403 bypass engine is original work by Akash Lahare.
+Released under **GPL-2.0-or-later** — see `NOTICE`.
 
 ## Disclaimer
 
-b4pass is intended for **authorized security testing, penetration testing, and research only**. Do not scan systems or applications without explicit permission from the owner.
+For **authorized** security testing only. Do not scan systems without
+explicit permission from the owner.
