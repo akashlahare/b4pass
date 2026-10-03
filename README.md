@@ -56,7 +56,7 @@ b4pass --help                                                # all options
 Scanning core is a modified derivative of
 [dirsearch](https://github.com/maurosoria/dirsearch) (GPL-2.0, © Mauro
 Soria); the 401/403 bypass engine is original work by Akash Lahare.
-Released under **GPL-2.0-or-later** — see `NOTICE`.
+Released under **GPL-2.0-or-later**.
 
 ## Disclaimer
 
